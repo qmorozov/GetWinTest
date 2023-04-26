@@ -160,6 +160,11 @@
   gap: rem(4px);
 }
 
+.ant-input-disabled {
+  background-color: #DCDEFC !important;
+  border: 1px solid #CBD5E2 !important;
+}
+
 .profile {
   display: flex;
   flex-direction: column;

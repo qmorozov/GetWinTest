@@ -3,7 +3,7 @@ import Button from '../../UI/components/Button';
 import { TimeIcon } from '../../UI/icons/TimeIcon';
 import { ArrowIcon } from '../../UI/icons/ArrowIcon';
 import { setConfirmPhone } from '../../store/reducers/AuthSlice';
-import { useAppDispatch } from '../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 
 interface ConfirmPhoneField {
   smsCode: string;
@@ -11,6 +11,7 @@ interface ConfirmPhoneField {
 
 const ConfirmPhone = () => {
   const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.AuthReducer.user);
 
   const [form] = Form.useForm<ConfirmPhoneField>();
 
@@ -24,7 +25,7 @@ const ConfirmPhone = () => {
         <h2 className="confirm-phone__title">Подтверждение телефона</h2>
         <p className="confirm-phone__text">
           Мы отправили SMS с 6-значным кодом подтверждения на номер
-          <a href="tel:380507256009"> +38 (050) 725 60 09</a>
+          <a href={`tel:${user.phone}`}> {user.phone}</a>
         </p>
       </div>
       <div className="confirm-phone__field">

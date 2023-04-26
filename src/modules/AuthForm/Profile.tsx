@@ -5,7 +5,7 @@ import Select, { IOption } from '../../UI/components/Select';
 import Button from '../../UI/components/Button';
 import button from '../../UI/components/Button';
 import { useState } from 'react';
-import { useAppDispatch } from '../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import {
   clearUser,
   setConfirmPhone,
@@ -31,9 +31,10 @@ interface ProfileFormField {
 }
 const Profile = () => {
   const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.AuthReducer.user);
 
   const [form] = Form.useForm<ProfileFormField>();
-  const [phoneFilled, setPhoneFilled] = useState<boolean>(false);
+  // const [phoneFilled, setPhoneFilled] = useState<boolean>(false);
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
 
   const handleSubmitData = async (data: ProfileFormField) => {
@@ -57,8 +58,7 @@ const Profile = () => {
   const handleConfirmPhone = () => {
     const phone = form.getFieldValue('phone');
     if (phone) {
-      setPhoneFilled(true);
-      console.log(phone);
+      // setPhoneFilled(true);
       dispatch(updatePhone(phone));
       dispatch(setConfirmPhone(true));
     } else {
@@ -73,7 +73,12 @@ const Profile = () => {
 
   return (
     <>
-      <Form form={form} onFinish={handleSubmitData} className="profile">
+      <Form
+        form={form}
+        onFinish={handleSubmitData}
+        className="profile"
+        initialValues={{ email: user.email }}
+      >
         <h2 className="profile__title">Профиль пользователя</h2>
         <div className="field-group">
           <Form.Item
@@ -171,7 +176,7 @@ const Profile = () => {
         </Form.Item>
 
         <Form.Item name="email" label="E-Mail" className="input">
-          <Input placeholder="E-Mail" />
+          <Input placeholder="E-Mail" disabled />
         </Form.Item>
 
         <Button className="profile-next" variant="primary">

@@ -3,6 +3,7 @@ import md5 from 'md5';
 import { CopyIcon } from '../../UI/icons/CopyIcon';
 import { OneReloadIcon } from '../../UI/icons/OneReloadIcon';
 import Dialog from '../../UI/components/Dialog';
+import { useAppSelector } from '../../hooks/redux';
 
 interface IGeneratePassword {
   isOpen: boolean;
