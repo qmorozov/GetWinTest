@@ -241,10 +241,11 @@
   max-width: rem(336px);
 
   &-form {
+    position: relative;
     display: flex;
     justify-content: center;
-    padding-top: 92px;
-    padding-bottom: 92px;
+    padding-top: rem(92px);
+    padding-bottom: rem(92px);
   }
 
   &__info {
@@ -281,6 +282,25 @@
     font-size: rem(12px);
     line-height: rem(24px);
     color: #8D97B0;
+  }
+
+  &__leave-btn {
+    position: absolute;
+    display: flex;
+    gap: rem(11px);
+    align-items: center;
+    bottom: rem(32px);
+    left: rem(24px);
+    font-weight: 600;
+    font-size: rem(12px);
+    line-height: rem(15px);
+    color: #6D7895;
+    cursor: pointer;
+
+    .icon {
+      width: rem(18px);
+      height: rem(11px);
+    }
   }
 
   @include for-mobile {

@@ -1,12 +1,17 @@
 import { Form, Input } from 'antd';
 import Button from '../../UI/components/Button';
 import { TimeIcon } from '../../UI/icons/TimeIcon';
+import { ArrowIcon } from '../../UI/icons/ArrowIcon';
+import { setConfirmPhone } from '../../store/reducers/AuthSlice';
+import { useAppDispatch } from '../../hooks/redux';
 
 interface ConfirmPhoneField {
   smsCode: string;
 }
 
 const ConfirmPhone = () => {
+  const dispatch = useAppDispatch();
+
   const [form] = Form.useForm<ConfirmPhoneField>();
 
   const handleSubmitData = async (data: ConfirmPhoneField) => {
@@ -41,6 +46,14 @@ const ConfirmPhone = () => {
         </div>
       </div>
 
+      <Button
+        bare
+        type="button"
+        className="confirm-phone__leave-btn"
+        onClick={() => dispatch(setConfirmPhone(false))}
+      >
+        <ArrowIcon /> Назад
+      </Button>
       <Button variant="primary">Подтвердить</Button>
     </Form>
   );

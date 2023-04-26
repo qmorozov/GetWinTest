@@ -5,14 +5,12 @@ import Select, { IOption } from '../../UI/components/Select';
 import Button from '../../UI/components/Button';
 import button from '../../UI/components/Button';
 import { useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { useAppDispatch } from '../../hooks/redux';
 import {
-  AuthSlice,
   clearUser,
+  setConfirmPhone,
   updatePhone,
 } from '../../store/reducers/AuthSlice';
-import { IUser } from '../../models/IUser';
-import { SuccessIcon } from '../../UI/icons/SuccessIcon';
 import CustomModal from '../../UI/components/Modal';
 import { ErrorIcon } from '../../UI/icons/ErrorIcon';
 
@@ -62,6 +60,7 @@ const Profile = () => {
       setPhoneFilled(true);
       console.log(phone);
       dispatch(updatePhone(phone));
+      dispatch(setConfirmPhone(true));
     } else {
       message.error('Пожалуйста, введите свой телефон');
     }

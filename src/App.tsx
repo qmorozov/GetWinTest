@@ -6,6 +6,7 @@ import CreateService from './API/apiService';
 import Profile from './modules/AuthForm/Profile';
 import { useAppDispatch, useAppSelector } from './hooks/redux';
 import { AuthSlice, setUser } from './store/reducers/AuthSlice';
+import ConfirmPhone from './modules/AuthForm/ConfirmPhone';
 
 const companyInfo: string[] = [
   'Автоматизация HR',
@@ -21,8 +22,13 @@ const companyInfo: string[] = [
 const App = () => {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.AuthReducer.user);
+  const showConfirmPhone = useAppSelector(
+    (state) => state.AuthReducer.confirmPhone,
+  );
   const isUserFilled = Boolean(
-    Object.values(user).find((value) => value !== '' && value !== 0),
+    Object.entries(user).find(
+      ([key, value]) => value !== '' && value !== 0 && key !== 'token',
+    ),
   );
 
   const form = isUserFilled ? <Profile /> : <AuthForm />;
@@ -58,8 +64,8 @@ const App = () => {
       <RegisterLayout
         small
         layoutInfo={info}
-        layoutForm={form}
-        classes={formClass}
+        layoutForm={showConfirmPhone ? <ConfirmPhone /> : form}
+        classes={showConfirmPhone ? 'confirm-phone-form' : formClass}
       />
     </>
   );
