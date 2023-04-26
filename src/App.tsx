@@ -4,7 +4,8 @@ import AuthForm from './modules/AuthForm';
 
 import CreateService from './API/apiService';
 import Profile from './modules/AuthForm/Profile';
-import { useAppSelector } from './hooks/redux';
+import { useAppDispatch, useAppSelector } from './hooks/redux';
+import { AuthSlice, setUser } from './store/reducers/AuthSlice';
 
 const companyInfo: string[] = [
   'Автоматизация HR',
@@ -18,45 +19,55 @@ const companyInfo: string[] = [
 ];
 
 const App = () => {
+  const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.AuthReducer.user);
   const isUserFilled = Boolean(
     Object.values(user).find((value) => value !== '' && value !== 0),
   );
 
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+
+    if (storedUser) {
+      dispatch(setUser(JSON.parse(storedUser)));
+    }
+  }, []);
+
   const form = isUserFilled ? <Profile /> : <AuthForm />;
   const formClass = isUserFilled ? 'profile-form' : 'auth-form';
+  const info = isUserFilled ? (
+    <div className="register-info">
+      <h1>Регистрация пользователя</h1>
+      <p>
+        Заполните информацию о себе, чтобы начать использовать все преимущества
+        платформы
+      </p>
+    </div>
+  ) : (
+    <div className="auth-info">
+      <h1>Войти в аккаунт</h1>
+      <p>
+        Введите ваш E-mail и пароль, чтобы начать использовать все преимущества
+        платформы:
+      </p>
+      <ul>
+        {companyInfo.map((info: string, index: number) => (
+          <li key={index}>
+            <span></span>
+            <p>{info}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 
   return (
     <>
       <RegisterLayout
-        layoutInfo={
-          <div className="auth-info">
-            <h1>Войти в аккаунт</h1>
-            <p>
-              Введите ваш E-mail и пароль, чтобы начать использовать все
-              преимущества платформы:
-            </p>
-            <ul>
-              {companyInfo.map((info: string, index: number) => (
-                <li key={index}>
-                  <span></span>
-                  <p>{info}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-          // <div className="register-info">
-          //   <h1>Регистрация пользователя</h1>
-          //   <p>
-          //     Заполните информацию о себе, чтобы начать использовать все
-          //     преимущества платформы
-          //   </p>
-          // </div>
-        }
         small
-        classes={formClass}
+        layoutInfo={info}
         layoutForm={form}
-        // layoutForm={<ConfirmPhone />}
+        classes={formClass}
       />
     </>
   );

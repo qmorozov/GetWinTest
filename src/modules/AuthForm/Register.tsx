@@ -5,7 +5,7 @@ import { ClosedEyeIcon } from '../../UI/icons/ClosedEyeIcon';
 import { KeyIcon } from '../../UI/icons/KeyIcon';
 import { AxiosResponse } from 'axios';
 import { useAppDispatch } from '../../hooks/redux';
-import { AuthSlice } from '../../store/reducers/AuthSlice';
+import { AuthSlice, updateToken } from '../../store/reducers/AuthSlice';
 import ProfileService from '../../API/apiService';
 import GeneratePassword from './GeneratePassword';
 import Button from '../../UI/components/Button';
@@ -80,7 +80,7 @@ const Register = () => {
           if (data?.user_data?.token) {
             token = data.user_data.token;
             localStorage.setItem('token', token);
-            dispatch(AuthSlice.actions.updateToken(data.user_data.token));
+            dispatch(updateToken(data.user_data.token));
             setIsModalVisible(true);
             form.resetFields();
             setPassword('');

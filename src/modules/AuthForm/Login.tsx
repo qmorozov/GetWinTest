@@ -27,6 +27,8 @@ const Login = () => {
 
       if (data?.user_data) {
         dispatch(AuthSlice.actions.setUser(data.user_data));
+
+        localStorage.setItem('user', JSON.stringify(data.user_data));
       } else {
         message.error(data.msg);
       }
