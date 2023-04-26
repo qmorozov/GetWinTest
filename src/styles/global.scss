@@ -225,19 +225,15 @@ body {
   cursor: pointer;
 }
 
-:where(.css-dev-only-do-not-override-zjzpde).ant-row {
+.ant-row {
   display: block;
 }
 
-:where(.css-dev-only-do-not-override-zjzpde).ant-form-item
-  .ant-form-item-label
-  > label::after {
+.ant-form-item .ant-form-item-label > label::after {
   display: none;
 }
 
-:where(.css-dev-only-do-not-override-zjzpde).ant-form-item
-  .ant-form-item-label
-  > label {
+.ant-form-item .ant-form-item-label > label {
   padding-right: rem(8px);
   font-weight: 600;
   font-size: rem(12px);
@@ -245,7 +241,7 @@ body {
   color: #20272e;
 }
 
-:where(.css-dev-only-do-not-override-zjzpde).ant-form-item
+.ant-form-item
   .ant-form-item-label
   > label.ant-form-item-required:not(
     .ant-form-item-required-mark-optional
@@ -258,24 +254,20 @@ body {
   font-family: inherit;
 }
 
-:where(.css-dev-only-do-not-override-zjzpde).ant-input-status-error:not(
-    .ant-input-disabled
-  ):not(.ant-input-borderless).ant-input,
-:where(
-    .css-dev-only-do-not-override-zjzpde
-  ).ant-input-affix-wrapper-status-error:not(
+.ant-input-status-error:not(.ant-input-disabled):not(
+    .ant-input-borderless
+  ).ant-input,
+.ant-input-affix-wrapper-status-error:not(
     .ant-input-affix-wrapper-disabled
   ):not(.ant-input-affix-wrapper-borderless).ant-input-affix-wrapper {
   border-width: rem(2px);
 }
 
-:where(.css-dev-only-do-not-override-zjzpde).ant-form-item
-  .ant-form-item-label
-  > label {
+.ant-form-item .ant-form-item-label > label {
   height: auto;
 }
 
-:where(.css-dev-only-do-not-override-zjzpde).ant-form-item {
+.ant-form-item {
   margin-bottom: 0;
 }
 
@@ -327,18 +319,17 @@ body {
   }
 }
 
-:where(.css-dev-only-do-not-override-zjzpde).ant-input-affix-wrapper {
+.ant-input-affix-wrapper {
   padding: rem(8px) rem(16px) !important;
   border-radius: rem(4px) !important;
 }
 
-:where(.css-dev-only-do-not-override-zjzpde).ant-input:hover {
+.ant-input:hover {
   border-color: #4e5af2;
 }
 
-:where(.css-dev-only-do-not-override-zjzpde).ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+.ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
   height: rem(40px);
-
 }
 
 .field-group {
@@ -364,7 +355,7 @@ body {
   font-weight: 500;
   font-size: rem(18px);
   line-height: rem(24px);
-  color: #EDF2FF;
+  color: #edf2ff;
   max-width: rem(623px);
   text-align: center;
 }

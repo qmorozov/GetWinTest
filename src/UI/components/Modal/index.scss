@@ -1,7 +1,7 @@
 @import '../../../styles/_variables.scss';
 @import '../../../styles/mixin/_media.scss';
 
-:where(.css-dev-only-do-not-override-zjzpde).ant-modal {
+.ant-modal {
   padding-bottom: 0;
 
   .ant-modal-content {
@@ -11,11 +11,11 @@
   }
 }
 
-:where(.css-dev-only-do-not-override-zjzpde).ant-modal .ant-modal-content {
+.ant-modal .ant-modal-content {
   min-height: 50vh;
 }
 
-.--full-screen:where(.css-dev-only-do-not-override-zjzpde).ant-modal .ant-modal-content {
+.--full-screen.ant-modal .ant-modal-content {
   width: 100vw;
   height: 100vh;
   background: $primary-gradient;
@@ -47,7 +47,7 @@
   }
 }
 
-:where(.css-dev-only-do-not-override-zjzpde).ant-modal .ant-modal-close {
+.ant-modal .ant-modal-close {
   color: #dcdefc;
 }
 

@@ -13,16 +13,11 @@
   }
 }
 
-:where(.css-dev-only-do-not-override-zjzpde).ant-tabs
-  .ant-tabs-tab.ant-tabs-tab-active
-  .ant-tabs-tab-btn,
-:where(.css-zjzpde).ant-tabs
-  .ant-tabs-tab.ant-tabs-tab-active
-  .ant-tabs-tab-btn {
-  color: $primary;
+.ant-tabs-tab-btn {
+  color: $primary !important;
 }
 
-:where(.css-dev-only-do-not-override-zjzpde).ant-tabs .ant-tabs-ink-bar {
+.ant-tabs-ink-bar.ant-tabs-ink-bar-animated {
   background: #4e5af2;
   border-radius: rem(4px) rem(4px) 0 0;
 }
@@ -32,25 +27,14 @@
   justify-content: center;
 }
 
-:where(.css-dev-only-do-not-override-zjzpde).ant-tabs
-  .ant-tabs-tab
-  + .ant-tabs-tab {
-  margin-left: 0;
+.ant-tabs-tab {
+  margin-left: 0 !important;
 }
 
-:where(.css-dev-only-do-not-override-zjzpde).ant-tabs-top > .ant-tabs-nav,
-:where(.css-dev-only-do-not-override-zjzpde).ant-tabs-bottom > .ant-tabs-nav,
-:where(.css-dev-only-do-not-override-zjzpde).ant-tabs-top > div > .ant-tabs-nav,
-:where(.css-dev-only-do-not-override-zjzpde).ant-tabs-bottom
-  > div
-  > .ant-tabs-nav {
-  margin-bottom: rem(48px);
+.ant-tabs-nav {
+  margin-bottom: rem(48px) !important;
 
   @include for-mobile {
-    margin-bottom: rem(28px);
+    margin-bottom: rem(28px) !important;
   }
-}
-
-:where(.css-dev-only-do-not-override-zjzpde).ant-tabs .ant-tabs-tab:hover {
-  color: #4e5af2;
 }

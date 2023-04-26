@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import AuthForm from './modules/AuthForm';
 
 import CreateService from './API/apiService';
+import Profile from './modules/AuthForm/Profile';
 
 const companyInfo: string[] = [
   'Автоматизация HR',
@@ -44,9 +45,9 @@ const App = () => {
           // </div>
         }
         small
-        classes="auth-form"
-        // layoutForm={<Profile />}
-        layoutForm={<AuthForm />}
+        classes="profile-form"
+        layoutForm={<Profile />}
+        // layoutForm={<AuthForm />}
         // layoutForm={<ConfirmPhone />}
       />
     </>
