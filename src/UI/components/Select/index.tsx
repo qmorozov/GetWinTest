@@ -10,8 +10,9 @@ export interface IOption {
 
 export interface ICustomSelect {
   options: IOption[];
+  classes?: string;
   required?: boolean;
-  placeholder: string;
+  placeholder?: string;
   defaultValue?: string;
   onChange: (value: string) => void;
 }
@@ -19,6 +20,7 @@ export interface ICustomSelect {
 const CustomSelect: FC<ICustomSelect> = ({
   options,
   onChange,
+  classes,
   placeholder,
   required = false,
   defaultValue,
@@ -42,7 +44,10 @@ const CustomSelect: FC<ICustomSelect> = ({
   };
 
   return (
-    <div title={required ? 'This field is Required' : placeholder}>
+    <div
+      title={required ? 'This field is Required' : placeholder}
+      className={classes ? classes : ''}
+    >
       {placeholder && (
         <p className={`label-placeholder ${required ? '--required' : ''}`}>
           {placeholder}

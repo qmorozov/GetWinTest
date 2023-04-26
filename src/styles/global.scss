@@ -408,3 +408,67 @@ body {
     }
   }
 }
+
+.next-profile .ant-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: rem(48px);
+  max-width: rem(650px);
+  text-align: center;
+
+  p {
+    font-weight: 500;
+    font-size: rem(18px);
+    line-height: rem(24px);
+    color: #edf2ff;
+  }
+
+  .icon {
+    width: rem(72px);
+    height: rem(72px);
+  }
+
+  .next-profile__btn {
+    display: flex;
+    flex-direction: column;
+    gap: rem(24px);
+    width: 100%;
+    align-items: center;
+
+    .btn {
+      width: 100%;
+      max-width: rem(336px);
+
+      &.--primary {
+        background-color: #fff;
+        color: $primary;
+      }
+
+      &.--secondary {
+        border-color: #fff;
+        color: #fff;
+
+        &:hover {
+          background-color: #fff;
+          color: $primary;
+        }
+      }
+    }
+  }
+}
+
+.languages {
+  position: absolute;
+  top: rem(24px);
+  right: rem(24px);
+
+  .ant-select-selector {
+    border: none !important;
+    background-color: rgba(237, 242, 255, 0.7) !important;
+    border-radius: 8px !important;
+  }
+
+  @include for-mobile {
+    display: none;
+  }
+}

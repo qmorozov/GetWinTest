@@ -13,6 +13,7 @@ import {
 } from '../../store/reducers/AuthSlice';
 import CustomModal from '../../UI/components/Modal';
 import { ErrorIcon } from '../../UI/icons/ErrorIcon';
+import { SuccessIcon } from '../../UI/icons/SuccessIcon';
 
 const sexOptions: IOption[] = [
   { value: 'man', label: 'Мужчина' },
@@ -34,12 +35,8 @@ const Profile = () => {
   const user = useAppSelector((state) => state.AuthReducer.user);
 
   const [form] = Form.useForm<ProfileFormField>();
-  // const [phoneFilled, setPhoneFilled] = useState<boolean>(false);
-  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
-
-  const handleSubmitData = async (data: ProfileFormField) => {
-    console.log(data);
-  };
+  const [isExitModalVisible, setIsExitModalVisible] = useState<boolean>(false);
+  const [isNextModalVisible, setIsNextModalVisible] = useState<boolean>(false);
 
   const validatePhone = (rule: any, value: string) => {
     if (value && value.replace(/[^0-9]/g, '').length !== 12) {
@@ -58,7 +55,6 @@ const Profile = () => {
   const handleConfirmPhone = () => {
     const phone = form.getFieldValue('phone');
     if (phone) {
-      // setPhoneFilled(true);
       dispatch(updatePhone(phone));
       dispatch(setConfirmPhone(true));
     } else {
@@ -71,12 +67,17 @@ const Profile = () => {
     dispatch(clearUser());
   };
 
+  const handleSubmitData = async (data: ProfileFormField) => {
+    console.log(data);
+    setIsNextModalVisible(true);
+  };
+
   return (
     <>
       <Form
         form={form}
-        onFinish={handleSubmitData}
         className="profile"
+        onFinish={handleSubmitData}
         initialValues={{ email: user.email }}
       >
         <h2 className="profile__title">Профиль пользователя</h2>
@@ -187,16 +188,16 @@ const Profile = () => {
           bare
           type="button"
           className="profile-exit"
-          onClick={() => setIsModalVisible(true)}
+          onClick={() => setIsExitModalVisible(true)}
         >
           <ExitIcon />
           <span>Выход</span>
         </Button>
       </Form>
       <CustomModal
-        open={isModalVisible}
+        open={isExitModalVisible}
         classes="exit-profile"
-        onCancel={() => setIsModalVisible(false)}
+        onCancel={() => setIsExitModalVisible(false)}
       >
         <ErrorIcon />
         <div className="exit-profile__info">
@@ -204,12 +205,31 @@ const Profile = () => {
           <p>Вы действительно хотите выйти из своей учетной записи?</p>
         </div>
         <div className="exit-profile__btn">
-          <Button variant="primary" onClick={() => setIsModalVisible(false)}>
+          <Button
+            variant="primary"
+            onClick={() => setIsExitModalVisible(false)}
+          >
             Продолжить
           </Button>
           <Button variant="secondary" onClick={handleExit}>
             Выйти
           </Button>
+        </div>
+      </CustomModal>
+      <CustomModal
+        fullScreen
+        classes="next-profile"
+        open={isNextModalVisible}
+        onCancel={() => setIsNextModalVisible(false)}
+      >
+        <SuccessIcon />
+        <p>
+          Новая компания успешно создана и добавлена в базу данных. Пройдите
+          верификацию, чтобы завершить регистрацию компании
+        </p>
+        <div className="next-profile__btn">
+          <Button variant="primary">Пройти верификацию</Button>
+          <Button variant="secondary">Перейти в Профиль Компаний</Button>
         </div>
       </CustomModal>
     </>

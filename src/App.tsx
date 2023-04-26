@@ -7,6 +7,7 @@ import Profile from './modules/AuthForm/Profile';
 import { useAppDispatch, useAppSelector } from './hooks/redux';
 import { AuthSlice, setUser } from './store/reducers/AuthSlice';
 import ConfirmPhone from './modules/AuthForm/ConfirmPhone';
+import Languages from './modules/Languages';
 
 const companyInfo: string[] = [
   'Автоматизация HR',
@@ -67,6 +68,7 @@ const App = () => {
         layoutForm={showConfirmPhone ? <ConfirmPhone /> : form}
         classes={showConfirmPhone ? 'confirm-phone-form' : formClass}
       />
+      <Languages />
     </>
   );
 };
