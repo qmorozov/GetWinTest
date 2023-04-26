@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/GetWinTest/static/css/main.7b435aaa.css",
+    "main.js": "/GetWinTest/static/js/main.55a58754.js",
+    "index.html": "/GetWinTest/index.html",
+    "main.7b435aaa.css.map": "/GetWinTest/static/css/main.7b435aaa.css.map",
+    "main.55a58754.js.map": "/GetWinTest/static/js/main.55a58754.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7b435aaa.css",
+    "static/js/main.55a58754.js"
+  ]
+}
