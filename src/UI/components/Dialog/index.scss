@@ -1,0 +1,26 @@
+@import '../../../styles/_variables.scss';
+@import '../../../styles/mixin/_media.scss';
+
+.dialog-container {
+  position: absolute;
+  width: 100%;
+  background-color: #fff;
+  margin-top: rem(10px);
+  padding: rem(10px);
+  box-shadow: 0 rem(6px) rem(6px) rgba(0, 0, 0, 0.08), 0 0 rem(80px) rgba(0, 0, 0, 0.32);
+  border-radius: rem(8px);
+  z-index: 4;
+  overflow: hidden;
+  animation: slideIn 0.3s ease-in-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

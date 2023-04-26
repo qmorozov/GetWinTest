@@ -1,0 +1,290 @@
+@import '../../../styles/_variables.scss';
+@import '../../../styles/mixin/_media.scss';
+
+.auth {
+  margin: 0 auto;
+  padding: 0 rem(15px);
+  width: 100%;
+  max-width: rem(366px);
+
+  &-form {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .socials-wrapper {
+    margin-top: rem(32px);
+  }
+
+  :where(.css-dev-only-do-not-override-zjzpde).ant-tabs .ant-tabs-tab {
+    flex-basis: 50%;
+    min-width: 160px;
+    justify-content: center;
+  }
+
+  .ant-tabs-nav-list {
+    flex-basis: 50%;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: rem(24px);
+  }
+
+  @include for-mobile {
+    .socials-wrapper {
+      margin-top: rem(24px);
+    }
+
+    form {
+      gap: rem(18px);
+    }
+  }
+}
+
+.auth-social span {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin-top: rem(32px);
+
+  font-size: rem(12px);
+  line-height: rem(24px);
+  color: #8d97b0;
+
+  user-select: none;
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    border-bottom: rem(1px) solid #d2d8e8;
+  }
+
+  &:not(:empty)::before {
+    margin-right: rem(24px);
+  }
+
+  &:not(:empty)::after {
+    margin-left: rem(24px);
+  }
+
+  @include for-mobile {
+    margin-top: rem(24px);
+
+    font-size: rem(10px);
+    line-height: rem(20px);
+
+    &:not(:empty)::before {
+      margin-right: rem(20px);
+    }
+
+    &:not(:empty)::after {
+      margin-left: rem(20px);
+    }
+  }
+}
+
+.show-password {
+  cursor: pointer;
+  width: rem(19px);
+  height: rem(16px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.password-field {
+  position: relative;
+}
+
+.generate-password {
+  user-select: none;
+
+  &___key {
+    display: block;
+    cursor: pointer;
+    width: fit-content;
+
+    svg {
+      height: rem(17px);
+    }
+  }
+
+  & .dialog-container {
+    padding: 0;
+    left: 0;
+    top: rem(40px);
+  }
+
+  button {
+    width: 100%;
+    text-align: center;
+    padding: rem(12px) rem(26.5px);
+    display: block;
+    background-color: #edf2ff;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+      background-color: darken(#edf2ff, 3%);
+    }
+  }
+
+  svg {
+    cursor: pointer;
+  }
+
+  &__label {
+    display: flex;
+    gap: rem(8px);
+    padding: rem(12px) rem(8px) rem(12px) rem(16px);
+
+    p {
+      font-weight: 600;
+      font-size: rem(14px);
+      line-height: rem(24px);
+      color: #303842;
+      width: 100%;
+      max-width: 100% !important;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+}
+
+.ant-input-suffix {
+  gap: rem(4px);
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  gap: rem(24px);
+  height: fit-content;
+  width: 100%;
+  max-width: rem(550px);
+
+  &-form {
+    position: relative;
+    padding: rem(48px) rem(24px) rem(24px) rem(24px)
+  }
+
+  &__title {
+    font-weight: 600;
+    font-size: rem(18px);
+    line-height: rem(24px);
+    letter-spacing: 0.02em;
+    color: #20272E;
+  }
+
+  &-confirm-phone {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: rem(12px);
+    line-height: rem(24px);
+    color: $primary;
+    text-decoration: underline;
+  }
+
+  &-next {
+    position: absolute;
+    right: rem(24px);
+    bottom: rem(24px);
+    width: fit-content;
+  }
+
+  &-exit {
+    position: absolute;
+    left: rem(24px);
+    bottom: rem(24px);
+    display: flex;
+    align-items: center;
+    gap: rem(12px);
+    cursor: pointer;
+
+    span {
+      font-weight: 500;
+      font-size: rem(12px);
+      line-height: rem(24px);
+      color: #6D7895;
+    }
+
+    .icon {
+      width: rem(17px);
+      height: rem(16px);
+    }
+  }
+
+  @include for-mobile {
+    gap: rem(16px);
+    padding-bottom: rem(60px);
+
+    &-form {
+      justify-content: center;
+    }
+
+    &-confirm-phone {
+      font-size: rem(10px);
+      line-height: rem(18px);
+    }
+  }
+}
+
+.confirm-phone {
+  display: flex;
+  flex-direction: column;
+  gap: rem(32px);
+  max-width: rem(336px);
+
+  &-form {
+    display: flex;
+    justify-content: center;
+    padding-top: 92px;
+    padding-bottom: 92px;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: rem(16px);
+    text-align: center;
+  }
+
+  &__title {
+    font-weight: 600;
+    font-size: rem(18px);
+    line-height: rem(24px);
+    color: #20272E;
+  }
+
+  &__text {
+    font-weight: 500;
+    font-size: rem(12px);
+    line-height: rem(12px);
+    color: #47525F;
+
+    a:hover {
+      color: $primary;
+    }
+  }
+
+  &__time {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: rem(4px);
+    font-weight: 600;
+    font-size: rem(12px);
+    line-height: rem(24px);
+    color: #8D97B0;
+  }
+
+  @include for-mobile {
+    gap: rem(22px);
+  }
+}
+

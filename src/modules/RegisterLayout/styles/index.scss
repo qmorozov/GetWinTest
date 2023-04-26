@@ -1,0 +1,59 @@
+@import '../../../styles/_variables.scss';
+@import '../../../styles/mixin/_media.scss';
+
+.register-layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+
+  &__info {
+    flex-basis: 40%;
+    color: #fff;
+    background: $primary-gradient;
+  }
+
+  &__form {
+    display: flex;
+    flex-basis: 60%;
+    padding: rem(48px) rem(24px);
+  }
+
+  @include for-mobile {
+    flex-direction: column;
+
+    &__info::before {
+      display: none;
+    }
+
+    &__form {
+      padding-top: rem(60px);
+      padding-bottom: rem(60px);
+    }
+
+    &.--small {
+      .register-layout__info {
+        flex-basis: 20%;
+      }
+
+      .register-layout__form {
+        flex-basis: 80%;
+      }
+    }
+  }
+
+  @include for-laptop {
+    &__info {
+      position: relative;
+
+      &::before {
+        position: absolute;
+        bottom: 0;
+        content: '';
+        width: 100%;
+        height: 100%;
+        max-height: rem(338px);
+        background: $backgroundImage no-repeat bottom / contain;
+      }
+    }
+  }
+}

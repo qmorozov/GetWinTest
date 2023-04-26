@@ -1,0 +1,67 @@
+@import '../../../styles/_variables.scss';
+@import '../../../styles/mixin/_media.scss';
+
+.socials-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: rem(8px);
+
+  // === Responsive === //
+  @include for-tablet {
+    gap: rem(12px);
+  }
+}
+
+.social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+
+  border: rem(1px) solid #D2D8E8;
+  border-radius: rem(8px);
+
+  transition: opacity 0.3s ease-in-out;
+
+  svg {
+    display: block;
+  }
+
+  &:hover {
+    opacity: .6;
+  }
+
+  // === Responsive === //
+  @include for-mobile {
+    padding: rem(8px) rem(12px);
+    max-width: rem(56px);
+
+    svg {
+      width: rem(16px);
+      height: rem(16px);
+    }
+  }
+
+  @include for-tablet {
+    padding: rem(8px) rem(14px);
+    max-width: rem(72px);
+
+    svg {
+      width: rem(16px);
+      height: rem(16px);
+    }
+  }
+
+  @include for-laptop {
+    padding: rem(8px) rem(20px);
+    max-width: rem(104px);
+
+    svg {
+      width: rem(24px);
+      height: rem(24px);
+    }
+  }
+}

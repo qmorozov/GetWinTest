@@ -1,0 +1,62 @@
+@import '../../../styles/_variables.scss';
+@import '../../../styles/mixin/_media.scss';
+
+:where(.css-dev-only-do-not-override-zjzpde).ant-modal {
+  padding-bottom: 0;
+
+  .ant-modal-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+:where(.css-dev-only-do-not-override-zjzpde).ant-modal .ant-modal-content {
+  min-height: 50vh;
+}
+
+.--full-screen:where(.css-dev-only-do-not-override-zjzpde).ant-modal .ant-modal-content {
+  width: 100vw;
+  height: 100vh;
+  background: $primary-gradient;
+  border-radius: 0;
+  padding: 0;
+}
+
+.close-btn {
+  display: inline-block;
+  position: relative;
+  width: rem(14px);
+  height: rem(14px);
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: rem(2px);
+    height: rem(16px);
+    background-color: black;
+    top: rem(2px);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &::after {
+    transform: translateX(-50%) rotate(90deg);
+  }
+}
+
+:where(.css-dev-only-do-not-override-zjzpde).ant-modal .ant-modal-close {
+  color: #dcdefc;
+}
+
+.ant-modal-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 rem(15px);
+  max-width: rem(1200px);
+}

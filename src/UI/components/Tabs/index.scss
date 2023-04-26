@@ -1,0 +1,46 @@
+@import '../../../styles/_variables.scss';
+@import '../../../styles/mixin/_media.scss';
+
+.ant-tabs-tab {
+  font-weight: 500;
+  font-size: rem(12px) !important;
+  line-height: rem(24px);
+  color: #6d7895;
+
+  @include for-mobile {
+    font-size: rem(10px) !important;
+    line-height: rem(20px);
+  }
+}
+
+:where(.css-dev-only-do-not-override-zjzpde).ant-tabs
+  .ant-tabs-tab.ant-tabs-tab-active
+  .ant-tabs-tab-btn {
+  color: $primary;
+}
+
+:where(.css-dev-only-do-not-override-zjzpde).ant-tabs .ant-tabs-ink-bar {
+  background: #4e5af2;
+  border-radius: rem(4px) rem(4px) 0 0;
+}
+
+.ant-tabs-nav-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+:where(.css-dev-only-do-not-override-zjzpde).ant-tabs .ant-tabs-tab+.ant-tabs-tab {
+  margin-left: 0;
+}
+
+:where(.css-dev-only-do-not-override-zjzpde).ant-tabs-top >.ant-tabs-nav, :where(.css-dev-only-do-not-override-zjzpde).ant-tabs-bottom >.ant-tabs-nav, :where(.css-dev-only-do-not-override-zjzpde).ant-tabs-top >div>.ant-tabs-nav, :where(.css-dev-only-do-not-override-zjzpde).ant-tabs-bottom >div>.ant-tabs-nav {
+  margin-bottom: rem(48px);
+
+  @include for-mobile {
+    margin-bottom: rem(28px);
+  }
+}
+
+:where(.css-dev-only-do-not-override-zjzpde).ant-tabs .ant-tabs-tab:hover {
+  color: #4e5af2;
+}

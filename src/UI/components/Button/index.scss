@@ -1,0 +1,123 @@
+@import '../../../styles/_variables.scss';
+@import '../../../styles/mixin/_media.scss';
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  font-weight: 600;
+
+  user-select: none;
+
+  &:not(.--loader):not(:disabled) {
+    cursor: pointer;
+  }
+
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out,
+    border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+
+  &.--loader {
+    pointer-events: none;
+  }
+
+  &.--primary {
+    color: #fff;
+    background-color: #4e5af2;
+
+    &:not(.--loader):not(:disabled):hover {
+      background-color: #3843ed;
+      box-shadow: 0 rem(4px) rem(5px) rgba(0, 0, 0, 0.16);
+    }
+
+    &:not(.--loader):not(:disabled):active {
+      background-color: #5e6bf6;
+    }
+
+    &:disabled {
+      color: #8d97b0;
+      background-color: #dcdefc;
+    }
+
+    &.--icon {
+      cursor: auto;
+
+      color: #8d97b0;
+      background-color: #dcdefc;
+    }
+  }
+
+  &.--secondary {
+    color: #4e5af2;
+    border: rem(2px) solid #4e5af2;
+
+    &:not(.--loader):not(:disabled):hover {
+      color: #fff;
+      background-color: #3843ed;
+      border-color: transparent;
+      box-shadow: 0 rem(4px) rem(5px) rgba(0, 0, 0, 0.16);
+    }
+
+    &:not(.--loader):not(:disabled):active {
+      background-color: #5e6bf6;
+      box-shadow: 0 0 0 transparent;
+    }
+
+    &.--loader,
+    &:disabled {
+      color: #8d97b0;
+      border-color: #dcdefc;
+    }
+  }
+
+  &.--system {
+    color: #6d7895;
+    border: rem(1px) solid #cbd5e2;
+
+    &:not(:disabled):hover {
+      border-color: #3843ed;
+    }
+
+    &:not(:disabled):active {
+      background-color: #edf2ff;
+      border-color: #5e6bf6;
+    }
+
+    &:disabled {
+      color: #8d97b0;
+      border-color: #dcdefc;
+    }
+  }
+
+  // === Responsive === //
+  @include for-mobile {
+    gap: rem(5px);
+
+    padding: rem(8px) rem(16px);
+    border-radius: rem(15px);
+
+    font-size: rem(10px);
+    line-height: rem(12px);
+  }
+
+  @include for-tablet {
+    gap: rem(7px);
+
+    padding: rem(10px) rem(20px);
+    border-radius: rem(18px);
+
+    font-size: rem(11px);
+    line-height: rem(14px);
+  }
+
+  @include for-laptop {
+    gap: rem(10px);
+
+    padding: rem(12px) rem(24px);
+    border-radius: rem(20px);
+
+    font-size: rem(12px);
+    line-height: rem(15px);
+  }
+}

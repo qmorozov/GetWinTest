@@ -1,0 +1,357 @@
+@import 'normalize.css';
+
+@import 'mixin/_media.scss';
+@import '_variables.scss';
+
+@import 'parts/_reset.scss';
+
+@import '../UI/components/Button/index';
+@import '../UI/components/Social/index';
+@import '../UI/components/Modal/index';
+@import '../UI/components/Select/index';
+@import '../UI/components/Tabs/index';
+@import '../UI/components/Dialog/index';
+
+@import '../modules/RegisterLayout/styles/index';
+@import '../modules/AuthForm/styles/index';
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: rem(16px);
+  line-height: rem(24px);
+}
+
+.auth-info {
+  padding: rem(80px) rem(56px);
+
+  color: #fff;
+
+  h1 {
+    font-weight: 700;
+    font-size: rem(36px);
+    line-height: rem(44px);
+    letter-spacing: 0.02em;
+  }
+
+  & > p {
+    margin-top: rem(24px);
+    font-size: rem(18px);
+    color: #edf2ff;
+  }
+
+  ul {
+    gap: rem(20px) rem(44px);
+    margin-top: rem(72px);
+  }
+
+  li {
+    display: inline-flex;
+    align-items: center;
+    gap: rem(8px);
+
+    p {
+      font-weight: 500;
+      font-size: rem(14px);
+    }
+
+    span {
+      position: relative;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+
+      width: rem(18px);
+      height: rem(18px);
+
+      border: rem(1.5px) solid #84df88;
+      border-radius: rem(4px);
+
+      &::before {
+        position: absolute;
+        display: block;
+        content: '';
+        width: rem(12.5px);
+        height: rem(8px);
+        background: url("data:image/svg+xml,%3Csvg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.43991 4.0002L3.81391 6.3732L8.55991 1.6272' stroke='%2384DF88' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+          no-repeat center / contain;
+      }
+    }
+  }
+
+  @include for-mobile {
+    padding: rem(38px) rem(44px);
+
+    h1 {
+      font-size: rem(30px);
+      line-height: rem(38px);
+    }
+
+    & > p {
+      margin-top: rem(16px);
+      font-size: rem(14px);
+      line-height: rem(18px);
+    }
+
+    ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: rem(16px) rem(26px);
+      margin-top: rem(30px);
+
+      li {
+        p {
+          font-size: rem(12px);
+        }
+
+        span {
+          width: rem(16px);
+          height: rem(16px);
+
+          &::before {
+            width: rem(10.5px);
+            height: rem(6px);
+          }
+        }
+      }
+    }
+  }
+
+  @include for-tablet {
+    h1 {
+      font-size: 26px;
+      line-height: 32px;
+    }
+
+    & > p {
+      margin-top: 16px;
+      font-size: 14px;
+      line-height: 18px;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  @include for-laptop {
+    ul {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+.register-info {
+  h1 {
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  p {
+    font-weight: 500;
+    color: #edf2ff;
+  }
+
+  @include for-mobile {
+    padding: rem(28px) rem(44px);
+
+    h1 {
+      font-size: rem(18px);
+      line-height: rem(20px);
+    }
+
+    p {
+      margin-top: rem(10px);
+      font-size: rem(14px);
+      line-height: rem(22px);
+    }
+  }
+
+  @include for-tablet {
+    padding: rem(36px);
+
+    h1 {
+      font-size: rem(18px);
+      line-height: rem(22px);
+    }
+
+    p {
+      margin-top: rem(10px);
+      font-size: rem(12px);
+      line-height: rem(20px);
+    }
+  }
+
+  @include for-laptop {
+    padding: rem(48px) rem(64px);
+
+    h1 {
+      font-size: rem(24px);
+    }
+
+    p {
+      margin-top: rem(12px);
+    }
+  }
+}
+
+.label-placeholder {
+  position: relative;
+  display: inline-block;
+  font-weight: 600;
+  font-size: rem(12px);
+  line-height: rem(24px);
+  color: #20272e;
+
+  &.--required::before {
+    position: absolute;
+    content: '*';
+    top: rem(-3px);
+    right: rem(-7px);
+    font-size: rem(12px);
+    line-height: rem(24px);
+    color: $error;
+  }
+}
+
+.ant-input-suffix span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+:where(.css-dev-only-do-not-override-zjzpde).ant-row {
+  display: block;
+}
+
+:where(.css-dev-only-do-not-override-zjzpde).ant-form-item
+  .ant-form-item-label
+  > label::after {
+  display: none;
+}
+
+:where(.css-dev-only-do-not-override-zjzpde).ant-form-item
+  .ant-form-item-label
+  > label {
+  padding-right: rem(8px);
+  font-weight: 600;
+  font-size: rem(12px);
+  line-height: rem(24px);
+  color: #20272e;
+}
+
+:where(.css-dev-only-do-not-override-zjzpde).ant-form-item
+  .ant-form-item-label
+  > label.ant-form-item-required:not(
+    .ant-form-item-required-mark-optional
+  )::before {
+  position: absolute;
+  top: rem(2px);
+  right: 0;
+  display: block;
+  margin-inline-end: 0;
+  font-family: inherit;
+}
+
+:where(.css-dev-only-do-not-override-zjzpde).ant-input-status-error:not(
+    .ant-input-disabled
+  ):not(.ant-input-borderless).ant-input,
+:where(
+    .css-dev-only-do-not-override-zjzpde
+  ).ant-input-affix-wrapper-status-error:not(
+    .ant-input-affix-wrapper-disabled
+  ):not(.ant-input-affix-wrapper-borderless).ant-input-affix-wrapper {
+  border-width: rem(2px);
+}
+
+:where(.css-dev-only-do-not-override-zjzpde).ant-form-item
+  .ant-form-item-label
+  > label {
+  height: auto;
+}
+
+:where(.css-dev-only-do-not-override-zjzpde).ant-form-item {
+  margin-bottom: 0;
+}
+
+.password-validate {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  li {
+    position: relative;
+    padding-left: rem(20px);
+    color: $error;
+    transition: color 0.3s ease-in-out;
+
+    &.--completed {
+      color: $success;
+
+      &::before {
+        background-image: url("data:image/svg+xml,%3Csvg width='12' height='10' viewBox='0 0 12 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.33337 5.6665L4.00004 8.33317L10.6667 1.6665' stroke='%2371D575' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      }
+    }
+
+    &::before {
+      position: absolute;
+      width: rem(16px);
+      height: rem(16px);
+      content: '';
+      top: rem(5px);
+      left: 0;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-image: url("data:image/svg+xml,%3Csvg width='8' height='10' viewBox='0 0 8 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7.47846 8.87929C7.29843 9.05931 7.05426 9.16044 6.79966 9.16044C6.54506 9.16044 6.30089 9.05931 6.12086 8.87929L4.00006 6.45529L1.87926 8.87849C1.79038 8.96882 1.6845 9.04067 1.56772 9.08988C1.45094 9.13909 1.32557 9.16469 1.19884 9.16521C1.07211 9.16572 0.94654 9.14115 0.829361 9.09289C0.712182 9.04463 0.605718 8.97365 0.516108 8.88404C0.426499 8.79443 0.355518 8.68797 0.30726 8.57079C0.259003 8.45361 0.234423 8.32803 0.234939 8.20131C0.235455 8.07458 0.261056 7.94921 0.310267 7.83243C0.359477 7.71565 0.431323 7.60977 0.521659 7.52089L2.72806 5.00089L0.520859 2.47929C0.430523 2.39041 0.358677 2.28453 0.309467 2.16775C0.260256 2.05097 0.234655 1.9256 0.234139 1.79887C0.233623 1.67214 0.258203 1.54657 0.306461 1.42939C0.354718 1.31221 0.425699 1.20575 0.515308 1.11614C0.604918 1.02653 0.711383 0.955548 0.828561 0.907291C0.94574 0.859033 1.07131 0.834453 1.19804 0.834969C1.32477 0.835485 1.45014 0.861086 1.56692 0.910297C1.6837 0.959507 1.78958 1.03135 1.87846 1.12169L4.00006 3.54649L6.12086 1.12169C6.20974 1.03135 6.31562 0.959507 6.4324 0.910297C6.54918 0.861086 6.67455 0.835485 6.80128 0.834969C6.928 0.834453 7.05358 0.859033 7.17076 0.907291C7.28794 0.955548 7.3944 1.02653 7.48401 1.11614C7.57362 1.20575 7.6446 1.31221 7.69286 1.42939C7.74112 1.54657 7.76569 1.67214 7.76518 1.79887C7.76466 1.9256 7.73906 2.05097 7.68985 2.16775C7.64064 2.28453 7.56879 2.39041 7.47846 2.47929L5.27206 5.00089L7.47846 7.52089C7.56772 7.61005 7.63853 7.71592 7.68684 7.83247C7.73515 7.94901 7.76001 8.07393 7.76001 8.20009C7.76001 8.32625 7.73515 8.45117 7.68684 8.56771C7.63853 8.68425 7.56772 8.79013 7.47846 8.87929V8.87929Z' fill='%23FF776F'/%3E%3C/svg%3E");
+    }
+  }
+}
+
+.input input {
+  font-weight: 500;
+  font-size: rem(12px);
+  line-height: rem(24px);
+  color: #20272e;
+  padding: rem(8px) rem(16px);
+  border-radius: rem(4px);
+
+  &::placeholder {
+    font-size: inherit;
+    line-height: inherit;
+    color: #8d97b0;
+  }
+}
+
+:where(.css-dev-only-do-not-override-zjzpde).ant-input-affix-wrapper {
+  padding: rem(8px) rem(16px) !important;
+  border-radius: rem(4px) !important;
+}
+
+:where(.css-dev-only-do-not-override-zjzpde).ant-input:hover {
+  border-color: #4e5af2;
+}
+
+:where(.css-dev-only-do-not-override-zjzpde).ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+  height: rem(40px);
+
+}
+
+.field-group {
+  display: flex;
+  gap: rem(24px);
+
+  @include for-mobile {
+    gap: rem(18px);
+  }
+}
+
+.icon-key.--open path {
+  fill: $primary;
+  transition: fill 0.3s ease-in-out;
+}
+
