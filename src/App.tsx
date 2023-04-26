@@ -4,6 +4,7 @@ import AuthForm from './modules/AuthForm';
 
 import CreateService from './API/apiService';
 import Profile from './modules/AuthForm/Profile';
+import { useAppSelector } from './hooks/redux';
 
 const companyInfo: string[] = [
   'Автоматизация HR',
@@ -17,6 +18,14 @@ const companyInfo: string[] = [
 ];
 
 const App = () => {
+  const user = useAppSelector((state) => state.AuthReducer.user);
+  const isUserFilled = Boolean(
+    Object.values(user).find((value) => value !== '' && value !== 0),
+  );
+
+  const form = isUserFilled ? <Profile /> : <AuthForm />;
+  const formClass = isUserFilled ? 'profile-form' : 'auth-form';
+
   return (
     <>
       <RegisterLayout
@@ -45,9 +54,8 @@ const App = () => {
           // </div>
         }
         small
-        classes="profile-form"
-        layoutForm={<Profile />}
-        // layoutForm={<AuthForm />}
+        classes={formClass}
+        layoutForm={form}
         // layoutForm={<ConfirmPhone />}
       />
     </>

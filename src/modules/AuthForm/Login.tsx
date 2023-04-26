@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import { Form, Input } from 'antd';
-import { EyeIcon } from '../../UI/icons/EyeIcon';
-import { ClosedEyeIcon } from '../../UI/icons/ClosedEyeIcon';
-import ProfileService from '../../API/apiService';
-import Button from '../../UI/components/Button';
+import { Form, Input, message } from 'antd';
 import md5 from 'md5';
+import { useAppDispatch } from '../../hooks/redux';
+import { AuthSlice } from '../../store/reducers/AuthSlice';
+import ProfileService from '../../API/apiService';
+import { ClosedEyeIcon } from '../../UI/icons/ClosedEyeIcon';
+import { EyeIcon } from '../../UI/icons/EyeIcon';
+import Button from '../../UI/components/Button';
 
 interface LoginFormField {
   email: string;
@@ -12,15 +14,22 @@ interface LoginFormField {
 }
 
 const Login = () => {
+  const dispatch = useAppDispatch();
+
   const [form] = Form.useForm<LoginFormField>();
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
-  const handleSubmitData = async ({ email, password }: LoginFormField) => {
+  const handleSubmitData = async ({ password, email }: LoginFormField) => {
     try {
       const hashedPassword = await md5(password);
 
-      const response = await ProfileService.loginUser(email, hashedPassword);
-      console.log(response);
+      const { data } = await ProfileService.loginUser(email, hashedPassword);
+
+      if (data?.user_data) {
+        dispatch(AuthSlice.actions.setUser(data.user_data));
+      } else {
+        message.error(data.msg);
+      }
     } catch (error) {
       console.error(error);
     }
@@ -42,7 +51,7 @@ const Login = () => {
 
       <Form.Item
         label="Пароль"
-        name="confirm-password"
+        name="password"
         className="input --password"
         rules={[{ required: true, message: 'Введите пароль' }]}
       >
@@ -56,7 +65,7 @@ const Login = () => {
             </span>
           }
           type={showPassword ? 'text' : 'password'}
-          placeholder="Повторите ваш пароль"
+          placeholder="Введите пароль"
         />
       </Form.Item>
 

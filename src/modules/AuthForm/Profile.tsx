@@ -1,9 +1,13 @@
-import { Form, Input } from 'antd';
+import { Form, Input, message } from 'antd';
 import { ExitIcon } from '../../UI/icons/ExitIcon';
 import { MaskedInput } from 'antd-mask-input';
 import Select, { IOption } from '../../UI/components/Select';
 import Button from '../../UI/components/Button';
 import button from '../../UI/components/Button';
+import { useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { AuthSlice } from '../../store/reducers/AuthSlice';
+import { IUser } from '../../models/IUser';
 
 const sexOptions: IOption[] = [
   { value: 'man', label: 'Мужчина' },
@@ -21,7 +25,10 @@ interface ProfileFormField {
   middleName: string;
 }
 const Profile = () => {
+  const dispatch = useAppDispatch();
+
   const [form] = Form.useForm<ProfileFormField>();
+  const [phoneFilled, setPhoneFilled] = useState<boolean>(false);
 
   const handleSubmitData = async (data: ProfileFormField) => {
     console.log(data);
@@ -39,6 +46,17 @@ const Profile = () => {
       return Promise.reject('Неправильный формат даты!');
     }
     return Promise.resolve();
+  };
+
+  const handleConfirmPhone = () => {
+    const phone = form.getFieldValue('phone');
+    if (phone) {
+      setPhoneFilled(true);
+      console.log(phone);
+      dispatch(AuthSlice.actions.updatePhone(phone));
+    } else {
+      message.error('Пожалуйста, введите свой телефон');
+    }
   };
 
   return (
@@ -131,7 +149,7 @@ const Profile = () => {
             <button
               type="button"
               className="profile-confirm-phone"
-              onClick={() => console.log('click')}
+              onClick={handleConfirmPhone}
             >
               Подтвердить телефон
             </button>

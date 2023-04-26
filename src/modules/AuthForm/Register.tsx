@@ -1,5 +1,5 @@
 import { ChangeEvent, useEffect, useState } from 'react';
-import { Input, Form } from 'antd';
+import { Input, Form, message } from 'antd';
 import { EyeIcon } from '../../UI/icons/EyeIcon';
 import { ClosedEyeIcon } from '../../UI/icons/ClosedEyeIcon';
 import { KeyIcon } from '../../UI/icons/KeyIcon';
@@ -77,12 +77,16 @@ const Register = () => {
     if (isFormValid) {
       ProfileService.registerUser(user)
         .then(({ data }: AxiosResponse) => {
-          token = data.user_data.token;
-          localStorage.setItem('token', token);
-          dispatch(AuthSlice.actions.setToken(data.user_data));
-          setIsModalVisible(true);
-          form.resetFields();
-          setPassword('');
+          if (data?.user_data?.token) {
+            token = data.user_data.token;
+            localStorage.setItem('token', token);
+            dispatch(AuthSlice.actions.updateToken(data.user_data.token));
+            setIsModalVisible(true);
+            form.resetFields();
+            setPassword('');
+          } else {
+            message.error(data.msg);
+          }
         })
         .then(() => {
           return ProfileService.confirmEmail(token, window.location.href);

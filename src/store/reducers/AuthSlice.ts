@@ -3,7 +3,6 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface AuthState {
   user: IUser;
-  token: string;
 }
 
 const initialState: AuthState = {
@@ -24,7 +23,6 @@ const initialState: AuthState = {
     confirm_phone_code: '',
     reset_password_token: '',
   },
-  token: '',
 };
 
 export const AuthSlice = createSlice({
@@ -35,13 +33,17 @@ export const AuthSlice = createSlice({
       state.user = action.payload;
     },
 
-    setToken(state, action: PayloadAction<string>) {
-      state.token = action.payload;
+    updatePhone(state, action: PayloadAction<string>) {
+      state.user = { ...state.user, phone: action.payload };
+    },
+
+    updateToken(state, action: PayloadAction<string>) {
+      state.user = { ...state.user, token: action.payload };
     },
   },
 });
 
-export const { setUser, setToken } = AuthSlice.actions;
+export const { setUser, updatePhone } = AuthSlice.actions;
 export const AuthReducer = AuthSlice.reducer;
 
 export default AuthReducer;
