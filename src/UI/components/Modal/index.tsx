@@ -4,6 +4,7 @@ import { ModalProps } from 'antd/es/modal';
 
 export interface ICustomModal extends ModalProps {
   open: boolean;
+  classes?: string;
   fullScreen?: boolean;
   children: ReactNode;
   onCancel: () => void;
@@ -12,6 +13,7 @@ export interface ICustomModal extends ModalProps {
 const CustomModal: FC<ICustomModal> = ({
   open = false,
   children,
+  classes,
   onCancel,
   fullScreen = false,
   ...restProps
@@ -29,7 +31,7 @@ const CustomModal: FC<ICustomModal> = ({
       maxWidth: '100%',
       paddingBottom: '0',
     }}
-    className={fullScreen ? '--full-screen' : ''}
+    className={`${fullScreen ? '--full-screen' : ''} ${classes ? classes : ''}`}
   >
     {children}
   </Modal>

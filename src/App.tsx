@@ -16,32 +16,6 @@ const companyInfo: string[] = [
 ];
 
 const App = () => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
-
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
-
-  useEffect(() => {
-    const createUserAndLogin = async () => {
-      CreateService.createUser(
-        'test@test.com',
-        'password',
-        'https://example.com',
-      )
-        .then((response) => {
-          console.log('Пользователь успешно создан', response.data);
-        })
-        .catch((error) => {
-          console.log('Ошибка создания пользователя', error);
-        });
-    };
-  }, []);
-
   return (
     <>
       <RegisterLayout
@@ -75,10 +49,6 @@ const App = () => {
         layoutForm={<AuthForm />}
         // layoutForm={<ConfirmPhone />}
       />
-
-      {/*<CustomModal open={isModalVisible} onCancel={handleCancel}>*/}
-      {/*  <p>Контент модального окна</p>*/}
-      {/*</CustomModal>*/}
     </>
   );
 };

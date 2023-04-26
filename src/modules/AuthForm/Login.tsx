@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import Button from '../../UI/components/Button';
 import { Form, Input } from 'antd';
 import { EyeIcon } from '../../UI/icons/EyeIcon';
 import { ClosedEyeIcon } from '../../UI/icons/ClosedEyeIcon';
-import CreateService from '../../API/apiService';
+import ProfileService from '../../API/apiService';
+import Button from '../../UI/components/Button';
+import md5 from 'md5';
 
 interface LoginFormField {
   email: string;
@@ -14,14 +15,15 @@ const Login = () => {
   const [form] = Form.useForm<LoginFormField>();
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
-  const handleSubmitData = async (data: LoginFormField) => {
-    CreateService.login(data.email, data.password)
-      .then((response) => {
-        console.log('Успешный логин', response.data);
-      })
-      .catch((error) => {
-        console.log('Ошибка логина', error);
-      });
+  const handleSubmitData = async ({ email, password }: LoginFormField) => {
+    try {
+      const hashedPassword = await md5(password);
+
+      const response = await ProfileService.loginUser(email, hashedPassword);
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

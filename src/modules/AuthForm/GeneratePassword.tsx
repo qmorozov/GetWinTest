@@ -21,12 +21,8 @@ const GeneratePassword: FC<IGeneratePassword> = ({
 
   const generateNewPassword = () => {
     const randomPassword = Math.random().toString(36).slice(-10);
-    const newGeneratedPassword = md5(randomPassword.substring(0, 10)).slice(
-      0,
-      13,
-    );
 
-    const passwordArray = newGeneratedPassword.split('');
+    const passwordArray = randomPassword.split('');
 
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     const randomLetter = alphabet[Math.floor(Math.random() * alphabet.length)];

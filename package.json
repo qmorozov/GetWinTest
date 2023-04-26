@@ -25,7 +25,6 @@
     "prettier": "^2.8.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.43.9",
     "react-imask": "^6.6.1-alpha.2",
     "react-redux": "^8.0.5",
     "react-scripts": "5.0.1",
@@ -83,7 +82,6 @@
     "@storybook/testing-library": "^0.0.14-next.2",
     "@types/md5": "^2.3.2",
     "babel-plugin-named-exports-order": "^0.0.2",
-    "prop-types": "^15.8.1",
     "storybook": "^7.0.6",
     "webpack": "^5.80.0"
   }

@@ -1,9 +1,7 @@
 import axios from 'axios';
 
-const API_URL = 'https://api.prof.world';
-
 export const http = axios.create({
-  baseURL: API_URL,
+  baseURL: 'https://api.prof.world/v2.0/profile',
   headers: {
     'Content-type': 'application/json',
   },

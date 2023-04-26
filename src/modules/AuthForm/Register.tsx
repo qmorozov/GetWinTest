@@ -3,9 +3,15 @@ import { Input, Form } from 'antd';
 import { EyeIcon } from '../../UI/icons/EyeIcon';
 import { ClosedEyeIcon } from '../../UI/icons/ClosedEyeIcon';
 import { KeyIcon } from '../../UI/icons/KeyIcon';
+import { AxiosResponse } from 'axios';
+import { useAppDispatch } from '../../hooks/redux';
+import { AuthSlice } from '../../store/reducers/AuthSlice';
+import ProfileService from '../../API/apiService';
 import GeneratePassword from './GeneratePassword';
 import Button from '../../UI/components/Button';
-import CreateService from '../../API/apiService';
+import CustomModal from '../../UI/components/Modal';
+import { SuccessIcon } from '../../UI/icons/SuccessIcon';
+import md5 from 'md5';
 
 interface RegisterFormField {
   email: string;
@@ -14,7 +20,10 @@ interface RegisterFormField {
 }
 
 const Register = () => {
+  const dispatch = useAppDispatch();
+
   const [form] = Form.useForm<RegisterFormField>();
+
   const [dialogVisible, setDialogVisible] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showConfirmPassword, setShowConfirmPassword] =
@@ -25,7 +34,8 @@ const Register = () => {
     letter: false,
     upperCase: false,
   });
-  const [isFormValid, setIsFormValid] = useState(false);
+  const [isFormValid, setIsFormValid] = useState<boolean>(false);
+  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
 
   const handlePasswordGenerated = (generatedPassword: string) => {
     setPassword(generatedPassword);
@@ -56,17 +66,29 @@ const Register = () => {
   };
 
   const handleSubmitData = async (values: RegisterFormField) => {
+    let token = '';
+
+    const user = {
+      email: values.email,
+      password: md5(values.password),
+      ref: window.location.href,
+    };
+
     if (isFormValid) {
-      CreateService.createUser(
-        values.email,
-        values.password,
-        window.location.href,
-      )
-        .then((response) => {
-          console.log('Пользователь успешно создан', response.data);
+      ProfileService.registerUser(user)
+        .then(({ data }: AxiosResponse) => {
+          token = data.user_data.token;
+          localStorage.setItem('token', token);
+          dispatch(AuthSlice.actions.setToken(data.user_data));
+          setIsModalVisible(true);
+          form.resetFields();
+          setPassword('');
+        })
+        .then(() => {
+          return ProfileService.confirmEmail(token, window.location.href);
         })
         .catch((error) => {
-          console.log('Ошибка создания пользователя', error);
+          console.error(error);
         });
     }
   };
@@ -185,6 +207,19 @@ const Register = () => {
           Зарегистрироваться
         </Button>
       </Form>
+
+      <CustomModal
+        fullScreen
+        open={isModalVisible}
+        classes="registered-profile"
+        onCancel={() => setIsModalVisible(false)}
+      >
+        <SuccessIcon />
+        <p>
+          Аккаунт был успешно зарегистрирован. На ваш E-Mail отправлено письмо с
+          ссылкой для подтверждения
+        </p>
+      </CustomModal>
     </>
   );
 };
