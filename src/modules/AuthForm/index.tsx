@@ -3,7 +3,6 @@ import { TabsProps } from 'antd';
 import Social from '../../UI/components/Social';
 import Login from './Login';
 import Register from './Register';
-import Profile from './Profile';
 
 const AuthForm = () => {
   const authTabs: TabsProps['items'] = [

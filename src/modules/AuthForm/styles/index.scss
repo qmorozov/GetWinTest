@@ -16,7 +16,7 @@
     margin-top: rem(32px);
   }
 
-  :where(.css-dev-only-do-not-override-zjzpde).ant-tabs .ant-tabs-tab {
+  :where(.css-dev-only-do-not-override-zjzpde).ant-tabs .ant-tabs-tab,.ant-tabs .ant-tabs-tab {
     flex-basis: 50%;
     min-width: 160px;
     justify-content: center;
