@@ -36,7 +36,7 @@ const Profile = () => {
 
   const [form] = Form.useForm<ProfileFormField>();
   const [phoneFilled, setPhoneFilled] = useState<boolean>(false);
-  const [isModalVisible, setIsModalVisible] = useState<boolean>(true);
+  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
 
   const handleSubmitData = async (data: ProfileFormField) => {
     console.log(data);

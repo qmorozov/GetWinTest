@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Form, Input, message } from 'antd';
 import md5 from 'md5';
 import { useAppDispatch } from '../../hooks/redux';
-import { AuthSlice } from '../../store/reducers/AuthSlice';
+import { AuthSlice, setUser } from '../../store/reducers/AuthSlice';
 import ProfileService from '../../API/apiService';
 import { ClosedEyeIcon } from '../../UI/icons/ClosedEyeIcon';
 import { EyeIcon } from '../../UI/icons/EyeIcon';
@@ -18,6 +18,14 @@ const Login = () => {
 
   const [form] = Form.useForm<LoginFormField>();
   const [showPassword, setShowPassword] = useState<boolean>(false);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+
+    if (storedUser) {
+      dispatch(setUser(JSON.parse(storedUser)));
+    }
+  }, []);
 
   const handleSubmitData = async ({ password, email }: LoginFormField) => {
     try {

@@ -25,14 +25,6 @@ const App = () => {
     Object.values(user).find((value) => value !== '' && value !== 0),
   );
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-
-    if (storedUser) {
-      dispatch(setUser(JSON.parse(storedUser)));
-    }
-  }, []);
-
   const form = isUserFilled ? <Profile /> : <AuthForm />;
   const formClass = isUserFilled ? 'profile-form' : 'auth-form';
   const info = isUserFilled ? (
