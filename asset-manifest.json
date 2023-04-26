@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/GetWinTest/static/css/main.4e0d491d.css",
-    "main.js": "/GetWinTest/static/js/main.3410ee35.js",
+    "main.css": "/GetWinTest/static/css/main.183d644d.css",
+    "main.js": "/GetWinTest/static/js/main.f64dd4ae.js",
     "index.html": "/GetWinTest/index.html",
-    "main.4e0d491d.css.map": "/GetWinTest/static/css/main.4e0d491d.css.map",
-    "main.3410ee35.js.map": "/GetWinTest/static/js/main.3410ee35.js.map"
+    "main.183d644d.css.map": "/GetWinTest/static/css/main.183d644d.css.map",
+    "main.f64dd4ae.js.map": "/GetWinTest/static/js/main.f64dd4ae.js.map"
   },
   "entrypoints": [
-    "static/css/main.4e0d491d.css",
-    "static/js/main.3410ee35.js"
+    "static/css/main.183d644d.css",
+    "static/js/main.f64dd4ae.js"
   ]
 }
